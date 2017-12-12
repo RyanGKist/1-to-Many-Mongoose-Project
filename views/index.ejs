@@ -1,0 +1,28 @@
+<h1>Dojo Message Board!</h1>
+<hr>
+<form action = '/submitMessage' method='post'>
+    <input type='text' name='name' placeholder="Name">
+    <br>
+    <textarea name ='post' placeholder="Post"></textarea>
+    <button type='submit'>Post Message</button>
+</form>
+
+<h2>Post</h2>
+
+<% for (const post of posts) {%>
+<hr>
+<h4><%= post.name %></h4>
+<p><%= post.text %></p>
+<h4>Comments</h4>
+
+    <% for(const comment of post.comments) {%>
+        <p><%= comment.text %></p>
+    <% } %>
+
+<form action='/submitComment/<%= post._id %>' method='post'>
+    <input type='text' name='name' placeholder='Name'><br>
+    <textarea name='comment' placeholder="Comment"></textarea><br>
+    <button type='submit'>Post Comment</button>
+    <hr>
+</form>
+<% } %>
